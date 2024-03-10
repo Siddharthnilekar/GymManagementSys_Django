@@ -22,6 +22,7 @@
           <h1 class="card-title pricing-card-title">${{plan.price}}
             <small class="text-muted fw-light">/{{plan.validity_days}} Days</small>
           </h1>
+          <p class="text-success">Member Capacity{{plan.max_member}}</p>
           {% comment %} <p class="text-success">Member Capacity {{plan.max_member|sub:plan.total_members}}</p> {% endcomment %}
           <ul class="list-unstyled mt-3 mb-4">
             {% for feature in plan.subplanfeature_set.all %}
@@ -42,7 +43,7 @@
               <a href="#" class="w-100 btn btn-lg btn-dark disabled">Purchased</a>
             {% endif %}
           {% else %} 
-          <a href="#" class="w-100 btn btn-lg btn-outline-primary">Get started</a>
+          <a href="{% url 'checkout' plan.id %}" class="w-100 btn btn-lg btn-outline-primary">Get started</a>
           {% endif %}
           
           {% else %}

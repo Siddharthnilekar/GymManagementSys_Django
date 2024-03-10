@@ -43,8 +43,8 @@ def gallery_detail(request,id):
 
 # Subscription Plans
 def pricing(request):
-    #  annotate(total_members=Count('subscription__id'))..order_by('price')
-	pricing=models.SubPlan.objects.all()
+    #  annotate(total_members=Count('subscription__id')).
+	pricing=models.SubPlan.objects.all().order_by('price')
 	dfeatures=models.SubPlanFeature.objects.all()
 	return render(request, 'pricing.html',{'plans':pricing,'dfeatures':dfeatures})
 
@@ -58,5 +58,10 @@ def signup(request):
 			msg='Thank you for register.'
 	form=forms.SignUp
 	return render(request, 'registration/signup.html',{'form':form,'msg':msg})
+
+# Checkout
+def checkout(request,plan_id):
+	planDetail=models.SubPlan.objects.get(pk=plan_id)
+	return render(request, 'checkout.html',{'plan':planDetail})
 
 
