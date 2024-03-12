@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.html import mark_safe
+from django.contrib.auth.models import User
 
 # Create your models here.
 #banners
@@ -102,4 +103,27 @@ class PlanDiscount(models.Model):
 
 	def __str__(self):
 		return str(self.total_months)
+	
+# Subscriber
+class Subscriber(models.Model):
+	user=models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+	mobile=models.CharField(max_length=20)
+	address=models.TextField()
+	img=models.ImageField(upload_to="subs/",null=True)
+
+	def __str__(self):
+		return str(self.user)
+
+	def image_tag(self):
+		if self.img:
+			return mark_safe('<img src="%s" width="80" />' % (self.img.url))
+		else:
+			return 'no-image'
+
+# Subscription
+class Subscription(models.Model):
+	user=models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+	plan=models.ForeignKey(SubPlan, on_delete=models.CASCADE,null=True)
+	price=models.CharField(max_length=50)
+	reg_date=models.DateField(auto_now_add=True,null=True)
 
