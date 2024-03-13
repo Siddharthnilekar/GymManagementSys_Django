@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from . import models
 from . import forms
+import stripe
 
 #home
 def home(request):
@@ -65,3 +66,41 @@ def checkout(request,plan_id):
 	return render(request, 'checkout.html',{'plan':planDetail})
 
 
+stripe.api_key = 'sk_test_tR3PYbcVNZZ796tH88S4VQ2u'
+def checkout_session(request,plan_id):
+  plan=models.SubPlan.objects.get(pk=plan_id)
+  session = stripe.checkout.Session.create(
+    payment_method_types=['card'],
+    line_items=[{
+      'price_data': {
+        'currency': 'inr',
+        'product_data': {
+          'name': 'plan.title',
+        },
+        'unit_amount': plan.price*100,
+      },
+      'quantity': 1,
+    }],
+    mode='payment',
+    success_url="http://127.0.0.1:8000/pay_success?session_id={CHECKOUT_SESSION_ID}",
+    cancel_url='http://127.0.0.1:8000/pay_cancel',
+    client_reference_id=plan_id
+  )
+  return redirect(session.url, code=303)
+
+# Success
+def pay_success(request):
+      session = stripe.checkout.Session.retrieve(request.GET['session_id'])
+      plan_id=session.client_reference_id
+      plan=models.SubPlan.objects.get(pk=plan_id)
+      user=request.user
+      models.Subscription.objects.create(
+            plan=plan,
+            user=user,
+            price=plan.price
+      )
+      return render(request, 'success.html')
+      
+# Cancel
+def pay_cancel(request):
+      return render(request, 'cancel.html')
