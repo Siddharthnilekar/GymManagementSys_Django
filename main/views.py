@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.template.loader import get_template
 from . import models
 from . import forms
 import stripe
@@ -89,6 +90,8 @@ def checkout_session(request,plan_id):
   return redirect(session.url, code=303)
 
 # Success
+from django.core.mail import EmailMessage
+
 def pay_success(request):
       session = stripe.checkout.Session.retrieve(request.GET['session_id'])
       plan_id=session.client_reference_id
@@ -99,6 +102,12 @@ def pay_success(request):
             user=user,
             price=plan.price
       )
+      subject='Order Email'
+      html_content=get_template('orderemail.html').render({'title':plan.title})
+      from_email='codeartisanlab2607@gmail.com'
+      msg = EmailMessage(subject, html_content, from_email, ['john@gmail.com'])
+      msg.content_subtype = "html"  # Main content is now text/html
+      msg.send()
       return render(request, 'success.html')
       
 # Cancel
