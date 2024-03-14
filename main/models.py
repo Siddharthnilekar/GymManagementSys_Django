@@ -135,3 +135,21 @@ class Subscription(models.Model):
 	price=models.CharField(max_length=50)
 	reg_date=models.DateField(auto_now_add=True,null=True)
 
+# Trainer
+class Trainer(models.Model):
+	full_name=models.CharField(max_length=100)
+	mobile=models.CharField(max_length=100)
+	address=models.TextField()
+	is_active=models.BooleanField(default=False)
+	detail=models.TextField()
+	img=models.ImageField(upload_to="trainers/")
+
+	def __str__(self):
+		return str(self.full_name)
+
+	def image_tag(self):
+		if self.img:
+			return mark_safe('<img src="%s" width="80" />' % (self.img.url))
+		else:
+			return 'no-image'
+
