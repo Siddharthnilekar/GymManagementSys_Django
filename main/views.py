@@ -152,4 +152,9 @@ def trainerlogout(request):
 #User Dashboard Selection Start
 def user_dashboard(request):
       return render(request, 'user/dashboard.html')
+
+# Notifications
+def notifs(request):
+	data=models.Notify.objects.all().order_by('-id')
+	return render(request,'notifs.html',{'data':data})
       
