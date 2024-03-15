@@ -155,6 +155,7 @@ class Trainer(models.Model):
 		else:
 			return 'no-image'
 
+# Notifications Json Response Via Ajax
 class Notify(models.Model):
 	notify_detail=models.TextField()
 	read_by_user=models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
@@ -162,3 +163,9 @@ class Notify(models.Model):
 
 	def __str__(self):
 		return str(self.notify_detail)
+	
+# Mark as Read Notification By User
+class NotifUserStatus(models.Model):
+	notif=models.ForeignKey(Notify, on_delete=models.CASCADE)
+	user=models.ForeignKey(User, on_delete=models.CASCADE)
+	status=models.BooleanField(default=False)
