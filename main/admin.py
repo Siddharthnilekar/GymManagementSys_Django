@@ -66,3 +66,7 @@ admin.site.register(models.Notify,NotifyAdmin)
 class NotifUserStatusAdmin(admin.ModelAdmin):
 	list_display=('notif','user','status')
 admin.site.register(models.NotifUserStatus,NotifUserStatusAdmin)
+
+class AssignSubscriberAdmin(admin.ModelAdmin):
+	list_display=('subscriber','trainer')
+admin.site.register(models.AssignSubscriber,AssignSubscriberAdmin)
