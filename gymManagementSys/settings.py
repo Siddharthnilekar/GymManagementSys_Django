@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main',
+    'mathfilters',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
