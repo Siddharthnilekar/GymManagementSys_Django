@@ -219,3 +219,20 @@ class TrainerSalary(models.Model):
 
 	def __str__(self):
 		return str(self.trainer.full_name)
+
+# Trainer notifications
+class TrainerNotification(models.Model):
+	notif_msg=models.TextField()
+
+	def __str__(self):
+		return str(self.notif_msg)
+
+
+# Markas Read notification By Trainer
+class NotifTrainerStatus(models.Model):
+	notif=models.ForeignKey(TrainerNotification, on_delete=models.CASCADE)
+	trainer=models.ForeignKey(Trainer, on_delete=models.CASCADE)
+	status=models.BooleanField(default=False)
+
+	class Meta:
+		verbose_name_plural='Trainer Notification Status'
