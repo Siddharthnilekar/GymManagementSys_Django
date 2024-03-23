@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'main',
     'mathfilters',
     'jazzmin',
@@ -71,7 +72,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'gymManagementSys.wsgi.application'
+# WSGI_APPLICATION = 'gymManageSys.wsgi.application'
+ASGI_APPLICATION = 'gymManageSys.asgi.application'
 
 
 # Database
