@@ -29,10 +29,13 @@ urlpatterns=[
     path('trainer_subscribers',views.trainer_subscribers,name='trainer_subscribers'),
 	path('trainer_payments',views.trainer_payments,name='trainer_payments'),
     path('trainer_changepassword',views.trainer_changepassword,name='trainer_changepassword'),
+    path('trainer_notifs',views.trainer_notifs,name='trainer_notifs'),
     # Notifications
 	path('notifs',views.notifs,name='notifs'),
     path('get_notifs',views.get_notifs,name='get_notifs'),
     path('mark_read_notif',views.mark_read_notif,name='mark_read_notif'),
+    # Messages
+	path('messages',views.trainer_msgs,name='messages'),
 ]
 
 if settings.DEBUG:
