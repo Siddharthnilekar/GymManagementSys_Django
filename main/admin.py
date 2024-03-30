@@ -84,6 +84,9 @@ class TrainerNotificationAdmin(admin.ModelAdmin):
 	list_display=('notif_msg',)
 admin.site.register(models.TrainerNotification,TrainerNotificationAdmin)
 
+class TrainerNotificationStatusAdmin(admin.ModelAdmin):
+	list_display=('notif',)
+admin.site.register(models.NotifTrainerStatus,TrainerNotificationStatusAdmin)
 
 # SubscriberMsg
 class TrainerMsgAdmin(admin.ModelAdmin):
