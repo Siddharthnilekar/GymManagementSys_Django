@@ -1,5 +1,9 @@
-Django
+Django==3.2.5     
 Pillow
 psycopg2
 django-jazzmin
 django-mathfilters
+bootstrap@5.3.3    
+stripe
+django-mathfilters     
+channels-redis
