@@ -7,3 +7,5 @@ bootstrap@5.3.3
 stripe
 django-mathfilters     
 channels-redis
+gunicorn
+dj-database-url
