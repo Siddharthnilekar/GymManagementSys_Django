@@ -7,3 +7,4 @@ stripe==8.6.0
 channels-redis==4.2.0
 gunicorn
 dj-database-url
+whitenoise==6.4.0
