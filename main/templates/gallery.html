@@ -11,7 +11,7 @@
                 <div class="card">
                   <img src="{{gallery.img.url}}" class="card-img-top" alt="{{gallery.title}}">
                   <div class="card-body">
-                    <h5 class="card-title">Party time</h5>
+                    <h5 class="card-title">{{gallery.title}}</h5>
                     <p class="card-text">{{gallery.detail}}</p>
                     <a href="{% url 'gallery_detail' gallery.id %}" class="btn btn-primary">View All</a>
                   </div>

@@ -1,10 +1,8 @@
 Django==3.2.5     
-Pillow
-psycopg2
-django-jazzmin
-django-mathfilters 
-stripe
-django-mathfilters     
-channels-redis
-gunicorn
-dj-database-url
+pillow==10.2.0
+psycopg2==2.9.9
+django-jazzmin==2.6.0
+django-mathfilters==1.0.0
+stripe==8.6.0
+channels-redis==4.2.0
+jazzmin
