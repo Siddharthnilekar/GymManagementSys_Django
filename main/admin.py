@@ -3,7 +3,7 @@ from . import models
 
 class BannerAdmin(admin.ModelAdmin):
     list_display=('alt_text','image_tag') 
-admin.site.register(models.Banners,BannerAdmin)
+admin.site.register(models.Banners)
 
 class ServiceAdmin(admin.ModelAdmin):
     list_display=('title','image_tag') 
